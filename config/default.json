@@ -1,0 +1,4 @@
+{
+  "mongoUrl" :"mongodb+srv://Kirill:UcwFgGewDkcFIeAi@cluster0.z0gad.azure.mongodb.net/pizzaStore?retryWrites=true&w=majority",
+  "port":5000
+}
