@@ -4,13 +4,14 @@ const initialState = {
   name:null,
   email:null,
   token:null,
-  userId:null
+  userId:null,
+  
 }
 
 export const authReducer = (state=initialState, action)=>{
   switch (action.type) {
     case LOGIN_HANDLER:
-      debugger
+      
       return{
         ...state,
         name:action.name,
@@ -35,10 +36,10 @@ const setUserData = ({name=null,email=null,token=null,userId=null})=>{
 
 
 export const loginHandler = (userData)=> async(dispatch)=>{
-  debugger
+  
   delete userData.message 
   let a = JSON.stringify({...userData})
-  debugger
+  
   if(!localStorage.getItem("userData")){
 
     localStorage.setItem("userData", a)
@@ -49,7 +50,7 @@ export const loginHandler = (userData)=> async(dispatch)=>{
 }
 
 export const logoutHandler  = ()=> dispatch =>{
-  debugger
+  
   dispatch(setUserData({name:null,email:null,token:null,userId:null}))
   localStorage.removeItem("userData")
 }

@@ -6,13 +6,15 @@ import AuthContainer from './Components/Auth/AuthContainer';
 import { loginHandler } from './redux/authReducer';
 import { connect } from 'react-redux';
 import ProfileContainer from './Components/Profile/ProfileContainer';
+import CardContainer from './Components/Card/CardContainer';
+import AddItemContainer from './Components/AddItem/AddItemContainer';
 function App(props) {
   const [auth, setAuth] = useState(false)
   useEffect(() => {
     let d = localStorage.getItem("userData")
     if(d){
       props.loginHandler(JSON.parse(d))
-      debugger
+      
     }
   }, [])
   useEffect(()=>{
@@ -24,7 +26,7 @@ function App(props) {
         <div className="row ">
         <NavbarContainer isAuth={auth}/>
         </div>
-        <div className="row center logic">
+        <div className="row  logic">
           <Switch>
 
             <Route path="/store">
@@ -32,11 +34,11 @@ function App(props) {
             </Route>
             
             <Route path="/addItem">
-              content addItem
+              <AddItemContainer/>
             </Route>
 
             <Route path="/card">
-              content card
+              <CardContainer/>
             </Route>
 
             {

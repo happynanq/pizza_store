@@ -1,0 +1,34 @@
+.wrapper{
+  /* background-color: #fff; */
+  height: 100px;
+}
+.item{
+  /* background-color: coral; */
+  display: flex;
+  justify-content: space-between;
+}
+.itemContent{
+  /* background-color: bisque; */
+  display: flex;
+  justify-content: space-between;
+}
+.img{
+  /* background-color: black; */
+
+}
+.img >img{
+  height: 100px;
+
+}
+.content{
+  /* background-color: aqua; */
+  /* height: 100px; */
+  margin-left: 10px;
+}
+.itemCountWrapper{
+  display: flex;
+  align-items: center;
+}
+.itemCount{
+  margin-right: 10px;;
+}

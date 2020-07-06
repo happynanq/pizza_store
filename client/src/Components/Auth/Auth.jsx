@@ -11,7 +11,7 @@ const Auth = (props)=>{
   const [login, setLogin] = useState("Register")
   const history = useHistory()
   const message = useMessage()
-  const {request,error,clearError, loading} = useHttp()
+  const {request,error, loading} = useHttp()
   const handleChange = (e)=>{
     setLogin( login === "Register" ? "Login":"Register")
   }
@@ -40,7 +40,7 @@ const Auth = (props)=>{
       const response = request("/api/auth/login","POST",{...e})
       const data = await response
       message(data.message)
-      debugger
+      
       props.loginHandler(data)
       history.push('/')
     } catch (e) {
@@ -51,7 +51,7 @@ const Auth = (props)=>{
   }
 
   return(
-    <div className="switch ">
+    <div className="switch center ">
       <label>
         Register
         <input name="switch" type="checkbox"  checked={login ==="Login"} onChange={handleChange} value={login}/>
@@ -60,7 +60,7 @@ const Auth = (props)=>{
       </label>
       <div className="row">
         {
-          login === "Register" ? <Register onSubmit={registerUser}/> : <Login onSubmit={loginUser}/>
+          login === "Register" ? <Register  onSubmit={registerUser} loading={loading}/> : <Login onSubmit={loginUser} loading={loading}/>
         }
       </div>
 

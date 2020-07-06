@@ -22,7 +22,7 @@ const Login = (props)=>{
             <label htmlFor="password">Password</label>
           </div>
         </div>
-        <button className="btn">Login</button>
+        <button className="btn" disabled={props.loading}>Login</button>
 
       </form>
     </div>

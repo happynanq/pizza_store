@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  useHistory} from 'react-router-dom';
 import { useMessage } from '../../hooks/sendMessage';
 
 const Profile = (props)=>{
-  debugger
+  
   let {name, email} = props.userData
+  const [loading, setLoading] = useState(false);
   const history = useHistory()
   const message = useMessage()
   const logoutHandler = ()=>{
+    setLoading(true)
     new Promise((resolve, reject)=>{
       try {
         props.logoutHandler()
@@ -17,14 +19,21 @@ const Profile = (props)=>{
       }
       
     })
-    .then(()=>{history.push("/")})
-    .catch(e=>{message(e)})
+    .then(()=>{
+      history.push("/")
+      setLoading(false)
+    })
+    .catch(e=>{
+      message(e)
+      setLoading(false)
+
+    })
     
 
 
   }
   return(
-    <div className="container">
+    <div className="container center">
       <div className="row">
         ProfileInfo
         <div className="divider"></div>
@@ -42,7 +51,7 @@ const Profile = (props)=>{
           </div>
           <div className="divider"></div>
           <div className="section">
-            <button className="btn red darken-2" onClick={logoutHandler}>Выйти из системы</button>
+            <button className="btn red darken-2" onClick={logoutHandler} disabled={loading}>Выйти из системы</button>
           </div>
         </div>
       </div>

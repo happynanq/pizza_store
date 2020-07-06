@@ -28,7 +28,7 @@ const Register = (props)=>{
           </div>
         </div>
         
-        <button className="btn">Register</button>
+        <button className="btn" disabled={props.loading}>Register</button>
 
       </form>
     </div>

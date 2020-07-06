@@ -12,6 +12,7 @@ app.use(express.json({extended:true}))
 // app.use(bodyParser({type:"application/json"}))
 
 app.use("/api/auth", require("./routes/register"))
+app.use("/api/item", require("./routes/item"))
 
 
 
