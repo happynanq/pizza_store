@@ -10,13 +10,14 @@ const initialState = {
 export const authReducer = (state=initialState, action)=>{
   switch (action.type) {
     case LOGIN_HANDLER:
+      debugger
       return{
         ...state,
         name:action.name,
         email:action.email,
         token:action.token,
         userId:action.userId,
-        isAuth:true
+        isAuth:!!action.token
       }
   
     default:
@@ -24,7 +25,7 @@ export const authReducer = (state=initialState, action)=>{
   }
 }
 
-const setUserData = ({name,email,token,userId})=>{
+const setUserData = ({name=null,email=null,token=null,userId=null})=>{
   return{
     type:LOGIN_HANDLER,
     name,email,token,userId
@@ -45,4 +46,10 @@ export const loginHandler = (userData)=> async(dispatch)=>{
   }
 
   dispatch(setUserData(userData))
+}
+
+export const logoutHandler  = ()=> dispatch =>{
+  debugger
+  dispatch(setUserData({name:null,email:null,token:null,userId:null}))
+  localStorage.removeItem("userData")
 }

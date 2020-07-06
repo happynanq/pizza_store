@@ -5,6 +5,7 @@ import StoreContainer from './Components/Store/StoreContainer';
 import AuthContainer from './Components/Auth/AuthContainer';
 import { loginHandler } from './redux/authReducer';
 import { connect } from 'react-redux';
+import ProfileContainer from './Components/Profile/ProfileContainer';
 function App(props) {
   const [auth, setAuth] = useState(false)
   useEffect(() => {
@@ -26,30 +27,30 @@ function App(props) {
         <div className="row center logic">
           <Switch>
 
-          <Route path="/store">
-            <StoreContainer />
-          </Route>
-          
-          <Route path="/addItem">
-            content addItem
-          </Route>
-
-          <Route path="/card">
-            content card
-          </Route>
-
-          {
-            auth ?
-            <Route path="/profile">
-              content profile
+            <Route path="/store">
+              <StoreContainer />
             </Route>
-            :
-            <Route path="/auth">
-              <AuthContainer/>
+            
+            <Route path="/addItem">
+              content addItem
             </Route>
-          }
-          
-          <Redirect to="/store"/>
+
+            <Route path="/card">
+              content card
+            </Route>
+
+            {
+              auth ?
+              <Route path="/profile">
+                <ProfileContainer/>
+              </Route>
+              :
+              <Route path="/auth">
+                <AuthContainer/>
+              </Route>
+            }
+            
+            <Redirect to="/store"/>
           </Switch>
         </div>
       </div>

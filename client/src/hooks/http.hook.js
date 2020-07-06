@@ -15,6 +15,7 @@ export const useHttp = ()=>{
         const response = await fetch(url, {
           method, body,headers
         }) 
+        debugger
         const data = await response.json()
         console.log("Data",data.errors)
 
