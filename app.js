@@ -1,6 +1,7 @@
 const express = require("express")
 const config = require("config")
 const {connect} = require("mongoose")
+const bodyParser = require("body-parser")
 
 const app = express()
 
@@ -8,6 +9,8 @@ const app = express()
 const PORT = config.get('port') || 5000
 
 app.use(express.json({extended:true}))
+// app.use(bodyParser({type:"application/json"}))
+
 app.use("/api/auth", require("./routes/register"))
 
 
@@ -18,6 +21,11 @@ async function start(){
       useNewUrlParser:true,
       useUnifiedTopology:true,
       useCreateIndex:true
+    },(err, client)=>{
+      // if(err){
+      //   console.log("Err", err, "Err")
+      // }
+      // console.log("Client",client, "Client")
     })
 
     app.listen(PORT, ()=>{
@@ -25,7 +33,7 @@ async function start(){
     })
 
   } catch (e) {
-    console.log(e.message)
+    console.log(e)
 
   }
 }

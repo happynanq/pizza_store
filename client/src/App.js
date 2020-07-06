@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom" 
+import NavbarContainer from './Components/Navbar/NavbarContainer';
+import StoreContainer from './Components/Store/StoreContainer';
+import AuthContainer from './Components/Auth/AuthContainer';
+import { loginHandler } from './redux/authReducer';
+import { connect } from 'react-redux';
+function App(props) {
+  const [auth, setAuth] = useState(false)
+  useEffect(() => {
+    let d = localStorage.getItem("userData")
+    if(d){
+      props.loginHandler(JSON.parse(d))
+      debugger
+    }
+  }, [])
+  useEffect(()=>{
+    setAuth(props.isAuth)
+  }, [props.isAuth])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="container-fluid orange accent-2 ">
+        <div className="row ">
+        <NavbarContainer isAuth={auth}/>
+        </div>
+        <div className="row center logic">
+          <Switch>
+
+          <Route path="/store">
+            <StoreContainer />
+          </Route>
+          
+          <Route path="/addItem">
+            content addItem
+          </Route>
+
+          <Route path="/card">
+            content card
+          </Route>
+
+          {
+            auth ?
+            <Route path="/profile">
+              content profile
+            </Route>
+            :
+            <Route path="/auth">
+              <AuthContainer/>
+            </Route>
+          }
+          
+          <Redirect to="/store"/>
+          </Switch>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
+const mapStateToProps = (state)=>({
+  isAuth:state.auth.isAuth
+})
+export default connect(mapStateToProps, 
+  {
+    loginHandler
+  }
+)(App);

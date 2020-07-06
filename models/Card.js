@@ -5,7 +5,8 @@ const schema = new Schema({
   items:[
     {
       type:Schema.Types.ObjectId,
-      ref:"Item"
+      ref:"Item",
+      default:{count:0}
     }
   ]
 })
