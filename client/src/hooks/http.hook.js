@@ -10,7 +10,7 @@ export const useHttp = ()=>{
         headers["Content-Type"] = "application/json"
       }
       console.log(body)
-debugger
+
       setLoading(true)
       try {
         const response = await fetch(url, {

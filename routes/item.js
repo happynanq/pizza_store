@@ -47,13 +47,36 @@ route.post(
         return res.status(400).json({errors:errors.array()})
       }
 
-        res.status(201).json({message:"Добро пожаловать",token,name:user.name, userId:user.id, email:user.email})
+      const items = await Item.find({})
+        res.status(201).json({message:"Продукты получены",items})
 
     } catch (e) {
       res.status(500).json({message:e.message})
     }
 })
 
+route.delete(
+  "/delete",
+  [
+    
+  ],  
+  async (req,res)=>{
+
+    try {
+      const errors = validationResult(req)
+      if(!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()})
+      }
+      const {id} = req.body 
+      
+      await Item.findByIdAndDelete({_id:id})
+      
+      res.status(201).json({message:"Продукт Удалён"})
+
+    } catch (e) {
+      res.status(500).json({message:e.message})
+    }
+})
 
 
 

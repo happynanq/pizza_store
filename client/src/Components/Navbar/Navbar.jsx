@@ -6,11 +6,11 @@ const Navbar = (props)=>{
     <nav>
     <div className="nav-wrapper red darken-3  ">
       <div 
-        class="brand-logo" 
+        className="brand-logo" 
         style={{paddingLeft:10}}
       >
         <img 
-          src={require("../../helper/logo2.png")} 
+          src={require("../../helper/img/logo2.png")} 
           alt="logo" 
           style={{width:64}}
             

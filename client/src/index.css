@@ -7,3 +7,12 @@ body{
   padding-bottom: 20px;
   min-height: 100vh;
 }
+.ivisibleBtn{
+  background: transparent;
+  border: none !important;
+  position: absolute;
+  z-index: 1;
+  
+}
+.absolutIcons{
+}

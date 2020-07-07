@@ -1,6 +1,7 @@
 const LOGIN_HANDLER = "LOGIN_HANDLER"
 const initialState = {
   isAuth:false,
+  isAdmin:false,
   name:null,
   email:null,
   token:null,
@@ -18,7 +19,8 @@ export const authReducer = (state=initialState, action)=>{
         email:action.email,
         token:action.token,
         userId:action.userId,
-        isAuth:!!action.token
+        isAuth:!!action.token,
+        isAdmin:action.isAdmin
       }
   
     default:
@@ -27,9 +29,10 @@ export const authReducer = (state=initialState, action)=>{
 }
 
 const setUserData = ({name=null,email=null,token=null,userId=null})=>{
+  let isAdmin = email == "k@mail.ru"
   return{
     type:LOGIN_HANDLER,
-    name,email,token,userId
+    name,email,token,userId, isAdmin
 
   }
 }

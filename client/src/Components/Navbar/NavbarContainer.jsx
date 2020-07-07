@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 
 const NavbarContainer = (props)=>{
   return(
-    <Navbar isAdmin={true} isAuth={props.isAuth}/>
+    <Navbar isAdmin={props.isAdmin} isAuth={props.isAuth}/>
   )
 }
 export default NavbarContainer 

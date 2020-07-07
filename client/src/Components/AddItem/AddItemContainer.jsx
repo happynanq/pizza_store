@@ -13,7 +13,7 @@ const AddItemContainer = (props)=>{
       message(data.message)
     } catch (err) {
       console.log(err);
-      debugger
+      
       err.map(e=>{message(e)})
     }
   }

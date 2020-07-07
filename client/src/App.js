@@ -9,22 +9,26 @@ import ProfileContainer from './Components/Profile/ProfileContainer';
 import CardContainer from './Components/Card/CardContainer';
 import AddItemContainer from './Components/AddItem/AddItemContainer';
 function App(props) {
+  debugger
   const [auth, setAuth] = useState(false)
+  const [admin, setAdmin] = useState(false)
   useEffect(() => {
     let d = localStorage.getItem("userData")
     if(d){
       props.loginHandler(JSON.parse(d))
-      
     }
   }, [])
+
   useEffect(()=>{
     setAuth(props.isAuth)
-  }, [props.isAuth])
+    setAdmin(props.isAdmin)
+  }, [props.isAuth, props.isAdmin])
+
   return (
     <BrowserRouter>
       <div className="container-fluid orange accent-2 ">
         <div className="row ">
-        <NavbarContainer isAuth={auth}/>
+        <NavbarContainer isAuth={auth} isAdmin={admin}/>
         </div>
         <div className="row  logic">
           <Switch>
@@ -60,7 +64,8 @@ function App(props) {
   );
 }
 const mapStateToProps = (state)=>({
-  isAuth:state.auth.isAuth
+  isAuth:state.auth.isAuth,
+  isAdmin:state.auth.isAdmin
 })
 export default connect(mapStateToProps, 
   {
