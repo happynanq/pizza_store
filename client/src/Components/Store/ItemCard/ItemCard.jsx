@@ -7,6 +7,7 @@ const ItemCard = (props)=>{
   const {request} = useHttp()
   const history = useHistory()
   const message = useMessage()
+
   const deleteHandler = (e, id)=>{
     try {
       request("/api/item/delete", "DELETE", {id})
@@ -18,9 +19,15 @@ const ItemCard = (props)=>{
     }
     
   }
+
   const openDesc = (e, id)=>{
     history.push("/store/"+id)
   }
+
+  const addToCard = (e, id, userId)=>{
+    request("/api/card/addToCard", "POST", {id, userId})
+  }
+
   return(
     <div className="col s6">
       <div className="row">
@@ -54,6 +61,8 @@ const ItemCard = (props)=>{
               <button 
                 className="btn" 
                 style={{marginLeft:20}}
+                onClick={(e)=>addToCard(e, props.id, props.userId)}
+
               >
                 Заказать
               </button>

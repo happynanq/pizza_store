@@ -13,6 +13,7 @@ app.use(express.json({extended:true}))
 
 app.use("/api/auth", require("./routes/register"))
 app.use("/api/item", require("./routes/item"))
+app.use("/api/card", require("./routes/card"))
 
 
 

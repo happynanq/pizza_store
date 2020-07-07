@@ -30,6 +30,7 @@ const StoreContainer = (props)=>{
   )
 }
 const mapStateToProps = (store)=>({
-  isAdmin :store.auth.isAdmin
+  isAdmin :store.auth.isAdmin,
+  userId : store.auth.userId
 })
 export default connect(mapStateToProps)(StoreContainer) 

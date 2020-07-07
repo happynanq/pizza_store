@@ -15,8 +15,7 @@ const Store = (props)=>{
         title={d.title} 
         key={d._id}
         id={d._id}
-        setDel={props.setDel}
-        isAdmin = {props.isAdmin}
+        {...props}
       />)}
       
       

@@ -12,7 +12,12 @@ const Card = (props)=>{
         Ваша корзина
       </div>
       <div className="row">
-        <CardItem/>
+        {
+          props.items?
+          props.items.map(id=><CardItem id={id}/>):
+          ""
+
+        }
       </div>
     </div>
   )

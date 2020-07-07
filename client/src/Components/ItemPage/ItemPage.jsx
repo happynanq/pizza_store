@@ -1,7 +1,6 @@
 import React, {  } from 'react';
 
 const ItemPage = (props)=>{
-  debugger
   
   return(
     <div className="container center">
