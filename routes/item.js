@@ -55,6 +55,29 @@ route.post(
     }
 })
 
+route.post(
+  "/getItem",
+  [
+    
+  ],  
+  async (req,res)=>{
+
+    try {
+      const errors = validationResult(req)
+      if(!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()})
+      }
+      const {id} = req.body
+      console.log(id)
+      const item = await Item.findOne({_id:id})
+        res.status(201).json({message:"Продукт получен",item})
+
+    } catch (e) {
+      res.status(500).json({message:e.message})
+    }
+})
+
+
 route.delete(
   "/delete",
   [

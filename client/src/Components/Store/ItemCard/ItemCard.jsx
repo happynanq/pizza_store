@@ -1,12 +1,13 @@
 import React from 'react';
 import { useHttp } from '../../../hooks/http.hook';
 import { useMessage } from '../../../hooks/sendMessage';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 const ItemCard = (props)=>{
   const {request} = useHttp()
+  const history = useHistory()
   const message = useMessage()
   const deleteHandler = (e, id)=>{
-    debugger
     try {
       request("/api/item/delete", "DELETE", {id})
       .then(res=>{message(res.message)})
@@ -16,6 +17,9 @@ const ItemCard = (props)=>{
       props.setDel(Date.now())
     }
     
+  }
+  const openDesc = (e, id)=>{
+    history.push("/store/"+id)
   }
   return(
     <div className="col s6">
@@ -39,9 +43,21 @@ const ItemCard = (props)=>{
             <div className="card-content">
               <p>{props.title}</p>
             </div>
-            <div className="card-action">
-              <a href="#">Подробнее</a>
-              <a href="#">Заказать</a>
+            <div className="card-action" >
+              <button 
+                className="btn" 
+                onClick={(e)=>openDesc(e, props.id)}
+              >
+                Подробнее
+              </button>
+
+              <button 
+                className="btn" 
+                style={{marginLeft:20}}
+              >
+                Заказать
+              </button>
+
             </div>
           </div>
         </div>

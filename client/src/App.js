@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import CardContainer from './Components/Card/CardContainer';
 import AddItemContainer from './Components/AddItem/AddItemContainer';
+import ItemPageContainer from './Components/ItemPage/ItemPageContainer';
 function App(props) {
-  debugger
   const [auth, setAuth] = useState(false)
   const [admin, setAdmin] = useState(false)
   useEffect(() => {
@@ -33,7 +33,7 @@ function App(props) {
         <div className="row  logic">
           <Switch>
 
-            <Route path="/store">
+            <Route path="/store" exact>
               <StoreContainer />
             </Route>
             
@@ -56,6 +56,10 @@ function App(props) {
               </Route>
             }
             
+            
+            <Route path="/store/:id">
+                <ItemPageContainer/>
+              </Route>
             <Redirect to="/store"/>
           </Switch>
         </div>

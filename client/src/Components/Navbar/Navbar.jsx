@@ -17,7 +17,7 @@ const Navbar = (props)=>{
           />
       </div>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li><Link to="store">Store</Link></li>
+        <li><Link to="/store">Store</Link></li>
         {
           props.isAdmin && <li><Link to="/addItem">Add Item</Link></li>
         }
